@@ -14,16 +14,16 @@ ASCII_ART = """
 ⬜⬜⬜⬛🟨⬛⬛⬛⬛⬛⬛⬜⬜⬜⬛🟨⬛🟨⬛⬛🟨⬛⬜⬜⬜⬜⬜⬜⬜
 ⬜⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬛🟨🟨🟨🟨🟨🟨⬛⬜⬜⬜⬜⬜⬜⬜
 ⬛🟨🟨🟨⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬛🟨🟨🟨🟨🟨⬛⬛⬛⬜⬜⬜⬜⬜⬜
-⬜⬛⬛🟨🟨⬛⬛⬛⬛⬛🟨⬛⬛⬛⬛⬛��🟨🟨🟨🟨🟨⬛⬜⬜⬜⬜⬜⬜
+⬜⬛⬛🟨🟨⬛⬛⬛⬛⬛🟨⬛⬛⬛⬛⬛⬛🟨🟨🟨🟨🟨⬛⬜⬜⬜⬜⬜⬜
 ⬜⬜⬜⬛⬛🟨⬛⬛⬛🟨🟨⬛⬛🟨🟨⬛🟨🟨🟨🟨⬛⬛⬜⬜⬜⬜⬜⬜⬜
 ⬜⬜⬜⬜⬜⬛⬛⬛🟨🟨⬛🟨🟨🟨⬛🟨🟨⬛⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜
 ⬜⬜⬜⬜⬜⬜⬛🟨🟨🟨🟨🟨🟨⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜
-⬜⬜⬜⬜⬜⬛🟨🟨🟨🟨⬛⬛🟨��🟨🟨⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜
+⬜⬜⬜⬜⬜⬛🟨🟨🟨🟨⬛⬛🟨⬛🟨🟨⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜
 ⬜⬜⬜⬜⬜⬛⬛🟨🟨⬛⬜⬛🟨🟨⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜
 ⬜⬜⬜⬜⬜⬜⬛⬛🟨⬛⬜🟨🟨🟨🟨⬛⬛⬛⬛⬛⬛⬛⬛🟨🟨🟨⬛⬛⬜
-⬜⬜⬜⬜⬜⬛🟧��⬛🟨🟨🟨🟨🟨⬛🟨⬛⬛⬛⬛🟨⬛⬛⬛🟨🟨🟨🟨⬛
+⬜⬜⬜⬜⬜⬛🟧⬛⬛🟨🟨🟨🟨🟨⬛🟨⬛⬛⬛⬛🟨⬛⬛⬛🟨🟨🟨🟨⬛
 ⬜⬜⬜⬜⬛🟧🟧🟧⬛🟨🟨🟨🟨🟨⬛⬛🟨🟨⬛⬛🟨🟨⬛⬛🟨⬛⬛⬛⬛
-⬜⬜⬜⬛🟧🟧⬛⬛⬜⬛🟨⬛⬛⬛⬜⬜⬛🟨��🟨⬛⬛🟨🟨🟨⬛⬜⬜⬜
+⬜⬜⬜⬛🟧🟧⬛⬛⬜⬛🟨⬛⬛⬛⬜⬜⬛🟨🟨🟨⬛⬛🟨🟨🟨⬛⬜⬜⬜
 ⬜⬜⬛🟧⬛⬛⬜⬜⬜⬜⬛⬛⬜⬜⬜⬜⬜⬛⬛🟨🟨⬛⬛🟨🟨🟨⬛⬜⬜
 ⬜⬜⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛🟨⬛⬜⬛⬛🟨🟨⬛⬜
 ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬛⬜⬜⬜⬛⬛⬛⬜
@@ -32,42 +32,37 @@ ASCII_ART = """
 def main():
     print(ASCII_ART)
     parser = argparse.ArgumentParser(
-        description="ZAPdos: Quick scanner via ZAP's API (no zap-cli required).\n\n"
-                    "Arguments:\n"
-                    "  target        URL cible ou fichier de cibles (un par ligne).\n"
-                    "  --api-url     URL de l'API ZAP (par défaut: http://127.0.0.1:8888).\n"
-                    "  --type        Type de scan (web ou api). Par défaut : web.\n"
-                    "  --creds       Identifiants pour la cible (format user:pass, optionnel).\n"
-                    "  --api-key     Clé API de ZAP (optionnel).\n\n"
-                    "⚠️ Si vous fermez le terminal, le scan s'arrêtera !\n"
-                    "💡 Pour lancer en arrière-plan (scan continue même si SSH/terminal se ferme) :\n"
-                    "  - Avec nohup : nohup ./ZAPdos target --type web > zapdos.log 2>&1 &\n"
-                    "  - Avec screen/tmux : screen -S zap && ./ZAPdos target --type web",
+        description="ZAPdos: Quick scanner via ZAP's API (no zap-cli required).",
         formatter_class=argparse.RawTextHelpFormatter
     )
     parser.add_argument("target", nargs="?", help="URL cible ou fichier de cibles.")
-    parser.add_argument("--api-url", default="http://127.0.0.1:8888", help="ZAP API base URL (par défaut: http://127.0.0.1:8888).")
+    parser.add_argument("--api-url", default="http://127.0.0.1:8888", help="ZAP API base URL (défaut: http://127.0.0.1:8888).")       
     parser.add_argument("--type", choices=["web", "api"], default="web", help="Type de scan: web ou api (par défaut: web).")
     parser.add_argument("--creds", help="Identifiants (format user:pass) pour la cible (optionnel).")
     parser.add_argument("--api-key", help="Clé API ZAP (optionnel).")
-
+    parser.add_argument("--report-dir", default="ZAPdos_Thunder", help="Dossier de sortie pour les rapports (défaut: ZAPdos_Thunder).")
     args = parser.parse_args()
+
     if not args.target:
         parser.print_help()
         exit(0)
 
-    report_dir = "ZAPdos_Thunder"
-    os.makedirs(report_dir, exist_ok=True)
+    os.makedirs(args.report_dir, exist_ok=True)
 
     if os.path.isfile(args.target):
         with open(args.target, "r") as f:
             targets = [line.strip() for line in f if line.strip()]
+        # Crée un sous-dossier avec le nom du fichier
+        target_file_basename = os.path.splitext(os.path.basename(args.target))[0]
+        report_subdir = os.path.join(args.report_dir, target_file_basename)
+        os.makedirs(report_subdir, exist_ok=True)
     else:
         targets = [args.target]
+        report_subdir = args.report_dir
 
     for target in targets:
         print(f"[+] Scanning target: {target} ({args.type} mode)")
-        run_zap_scan(target, report_dir, args.api_url, args.creds, args.api_key)
+        run_zap_scan(target, report_subdir, args.api_url, args.creds, args.api_key)
 
     print("[✔] Tous les scans sont terminés.")
 
@@ -113,20 +108,28 @@ def progress_bar(status_func, task_name):
         pbar.n = 100
         pbar.refresh()
 
-def zap_generate_report(report_filename, zap_api_url):
-    print(f"[+] Generating report: {report_filename}")
-    report_url = f"{zap_api_url}/OTHER/core/other/htmlreport/"
-    subprocess.run(["curl", "-s", report_url, "-o", report_filename], check=True)
+def zap_generate_reports(report_basename, zap_api_url):
+    print("[+] Generating HTML and JSON reports...")
+    html_report_url = f"{zap_api_url}/OTHER/core/other/htmlreport/"
+    json_report_url = f"{zap_api_url}/OTHER/core/other/jsonreport/"
+
+    html_file = f"{report_basename}.html"
+    json_file = f"{report_basename}.json"
+
+    subprocess.run(["curl", "-s", html_report_url, "-o", html_file], check=True)
+    subprocess.run(["curl", "-s", json_report_url, "-o", json_file], check=True)
+
+    print(f"[✔] Reports saved to:\n  - {html_file}\n  - {json_file}\n")
 
 def run_zap_scan(target, report_dir, zap_api_url, creds, api_key):
     parsed_url = urlparse(target)
     domain = parsed_url.netloc or parsed_url.path
-    report_filename = f"{report_dir}/{domain.replace('.', '_')}.html"
+    domain = domain.replace(":", "_").replace("/", "_")
+    report_basename = os.path.join(report_dir, domain)
 
     zap_spider(target, zap_api_url, creds, api_key)
     zap_active_scan(target, zap_api_url, creds, api_key)
-    zap_generate_report(report_filename, zap_api_url)
-    print(f"[✔] Report saved to {report_filename}\n")
+    zap_generate_reports(report_basename, zap_api_url)
 
 if __name__ == "__main__":
     main()
